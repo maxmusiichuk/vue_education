@@ -63,11 +63,15 @@ export default {
   color: #81a9d4;
 }
 .side-wrapper{
+  border-radius: 10px;
+  background-color: #fff;
   width: 700px;
   margin-top: 25px;
 }
 .task-list-wrapper{
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .task-list--item{
   display: flex;
