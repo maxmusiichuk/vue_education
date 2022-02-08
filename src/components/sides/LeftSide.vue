@@ -35,11 +35,9 @@ export default {
   },
   created() {
     this.tasksOutput = this.$store.getters["main/getTasks"];
-    console.log(this.tasksOutput);
   },
   watch: {
     task() {
-      console.log(this.task);
       this.tasksOutput = this.task;
     }
   },
@@ -55,6 +53,14 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 426px) {
+.side-wrapper{
+  width: 390px !important;
+}
+  .outside-items{
+    margin-right: 10px;
+  }
+}
 .done-task {
   /*color: red !important;*/
   text-decoration: line-through;
