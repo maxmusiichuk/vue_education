@@ -1,17 +1,15 @@
 <template>
   <div class="main-output--wrapper">
     <LeftSide/>
-    <RightSide/>
   </div>
 </template>
 
 <script>
 import {mapState} from "vuex";
 import LeftSide from "@/components/sides/LeftSide";
-import RightSide from "@/components/sides/RightSide";
 
 export default {
-  components: {RightSide, LeftSide},
+  components: {LeftSide},
   props: ['apiData'],
   name: "Output",
   data() {

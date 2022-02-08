@@ -1,5 +1,3 @@
-import {forEach} from "core-js/stable/dom-collections";
-
 const state = () => ({
     storeValue: "online",
     tasks: []
@@ -26,6 +24,7 @@ const mutations = {
             state.tasks = [];
         } else {
             state.tasks.splice(payload, 1);
+            // console.log(state.tasks(payload))
         }
     }
 }
