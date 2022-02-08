@@ -1,12 +1,15 @@
 <template>
   <div class="side-wrapper">
-<!--    <h1>Need to do</h1>-->
     <ul class="task-list-wrapper">
-<!--      <li v-for="(item,index) in tasksOutput" :key="item.id" @click="removeItem(index)">-->
-      <li class="task-list--item" v-for="(item,index) in tasksOutput" :key="item.id" >
-        <span class="checkbox-item"><input class="checkbox-switch" type="checkbox" @click="removeItem(item)" ></span>
-        <p :class="['task-id', 'dynamic-class-'+item.id]" style="text-align: left">
-        {{ item.name }}. Status: {{ item.doneStatus }}</p>
+      <li class="task-list--item" v-for="(item,index) in tasksOutput" :key="item.id">
+        <div class="inside-items">
+        <span class="checkbox-item">
+          <input class="checkbox-switch" type="checkbox" :value="item.id" @click="setTaskStatus(item)">
+        </span>
+          <p :class="['task-id',  {'done-task': item.doneStatus}]" style="text-align: left">
+            {{ item.name }}</p>
+        </div>
+        <div class="outside-items" @click="removeItem(index)"><p style="color: #81a9d4">X</p></div>
       </li>
     </ul>
   </div>
@@ -28,7 +31,6 @@ export default {
       task: state => state.main.tasks
     }),
     ...mapGetters({
-      // allTasks: state =>
     })
   },
   created() {
@@ -42,19 +44,23 @@ export default {
     }
   },
   methods: {
-    removeItem(itemId) {
+    setTaskStatus(itemId){
       itemId.doneStatus = !itemId.doneStatus;
-      // this.$store.commit("main/removeTask", itemId);
     },
-    consoleItem(item) {
-      console.log(item)
+    removeItem(itemId) {
+      this.$store.commit("main/removeTask", itemId);
     },
   }
 }
 </script>
 
 <style scoped>
-.task-id{
+.done-task {
+  /*color: red !important;*/
+  text-decoration: line-through;
+}
+
+.task-id {
   padding-left: 15px;
   font-family: 'Work Sans', sans-serif;
   font-size: 20px;
@@ -62,25 +68,40 @@ export default {
   font-style: italic;
   color: #81a9d4;
 }
-.side-wrapper{
+
+.side-wrapper {
   border-radius: 10px;
   background-color: #fff;
   width: 700px;
   margin-top: 25px;
 }
-.task-list-wrapper{
+
+.task-list-wrapper {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.task-list--item{
+.outside-items{
+  width: 27px;
+  margin-left: -27px;
+  cursor: pointer;
+}
+.task-list--item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #81a9d4;
+}
+.task-list--item:last-child{
+  border-bottom: none;
+}
+.inside-items {
   display: flex;
   align-items: center;
   width: 700px;
   height: 55px;
-  border-bottom: 1px solid #81a9d4;
 }
-.checkbox-item{
+
+.checkbox-item {
   border-right: 1px solid #81a9d4;
   display: flex;
   align-items: center;
@@ -88,7 +109,8 @@ export default {
   width: 50px;
   height: 100%;
 }
-.checkbox-switch{
+
+.checkbox-switch {
   cursor: pointer;
   border: #81a9d4;
   height: 20px;
