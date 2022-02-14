@@ -25,6 +25,10 @@ const mutations = {
     changeTaskStatus(state, payload){
     state.tasks = [];
     state.tasks = payload;
+    },
+
+    clearAllTasks(state, payload){
+    state.tasks = [];
     }
 }
 

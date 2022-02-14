@@ -12,8 +12,9 @@
         <div class="outside-items" @click="removeItem(index)"><p style="color: #81a9d4">X</p></div>
       </li>
     </ul>
-    <div v-show="tasksOutput.length > 0" class="todo__buttons-wrapper" @click="clearDoneTasks">
-      <div class="delete-done__button"><p>Clear done tasks</p></div>
+    <div v-show="tasksOutput.length > 0" class="todo__buttons-wrapper">
+      <div class="delete-done__button" @click="clearDoneTasks"><p>Clear done tasks</p></div>
+      <div class="delete-done__button" @click="removeAllItems"><p>Clear all</p></div>
     </div>
   </div>
 </template>
@@ -60,6 +61,9 @@ export default {
     removeItem(itemId) {
       this.$store.commit("main/removeTask", itemId);
     },
+    removeAllItems(){
+      this.$store.commit("main/clearAllTasks");
+    }
   }
 }
 </script>
