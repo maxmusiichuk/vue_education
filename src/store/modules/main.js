@@ -1,5 +1,4 @@
 const state = () => ({
-    storeValue: "online",
     tasks: []
 })
 
@@ -9,14 +8,11 @@ const getters = {
     },
 }
 
-const actions = {}
+const actions = {
+}
 
 const mutations = {
-    setStoreValue(state, payload) {
-        state.storeValue = payload
-    },
     setTask(state, payload) {
-        // state.tasks = payload
         state.tasks.push(payload);
     },
     removeTask(state, payload) {
@@ -24,8 +20,11 @@ const mutations = {
             state.tasks = [];
         } else {
             state.tasks.splice(payload, 1);
-            // console.log(state.tasks(payload))
         }
+    },
+    changeTaskStatus(state, payload){
+    state.tasks = [];
+    state.tasks = payload;
     }
 }
 

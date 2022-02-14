@@ -12,6 +12,9 @@
         <div class="outside-items" @click="removeItem(index)"><p style="color: #81a9d4">X</p></div>
       </li>
     </ul>
+    <div v-show="tasksOutput.length > 0" class="todo__buttons-wrapper" @click="clearDoneTasks">
+      <div class="delete-done__button"><p>Clear done tasks</p></div>
+    </div>
   </div>
 </template>
 
@@ -35,15 +38,22 @@ export default {
   },
   created() {
     this.tasksOutput = this.$store.getters["main/getTasks"];
-    console.log(this.tasksOutput);
   },
   watch: {
     task() {
-      console.log(this.task);
       this.tasksOutput = this.task;
     }
   },
   methods: {
+    clearDoneTasks(){
+      let arrayClear = [];
+      this.task.forEach(item => {
+        if (item.doneStatus == false){
+          arrayClear.push(item);
+        }
+      });
+      this.$store.commit("main/changeTaskStatus", arrayClear);
+    },
     setTaskStatus(itemId){
       itemId.doneStatus = !itemId.doneStatus;
     },
@@ -54,7 +64,42 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@media only screen and (max-width: 426px) {
+.side-wrapper{
+  width: 390px !important;
+}
+  .outside-items{
+    margin-right: 10px;
+  }
+}
+
+.todo__buttons-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.delete-done__button{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc600;
+  border-radius: 10px;
+  margin: 5px;
+  box-shadow: 7px 5px 1px 1px rgba(0, 0, 255, .2);
+  cursor: pointer;
+  &:active{
+    box-shadow: 4px 3px 1px 1px rgba(132, 110, 255, .2);
+    background-color: #ffc600;
+    transform: translateY(4px);
+  }
+  p{
+    padding: 10px;
+    color: #fff;
+  }
+}
+
 .done-task {
   /*color: red !important;*/
   text-decoration: line-through;
@@ -92,7 +137,7 @@ export default {
   border-bottom: 1px solid #81a9d4;
 }
 .task-list--item:last-child{
-  border-bottom: none;
+  //border-bottom: none;
 }
 .inside-items {
   display: flex;

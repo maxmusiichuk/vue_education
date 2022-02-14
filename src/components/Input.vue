@@ -1,7 +1,7 @@
 <template>
   <div class="main-input--wrapper">
     <div class="header-title">TODO LIST</div>
-    <input class="input-field" type="text" v-model="inputValue" @keyup.enter="onEnterKey">
+    <input :placeholder="placeholderValue" class="input-field" type="text" v-model="inputValue" @keyup.enter="onEnterKey">
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
     return {
       inputValue: '',
       localValue: "",
-      taskId: 0
+      taskId: 0,
+      placeholderValue:"Enter task & press Enter"
     }
   },
   computed: {

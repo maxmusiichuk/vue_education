@@ -31,6 +31,13 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 425px) {
+  /* For mobile phones: */
+  .main-output--wrapper{
+    display: flex;
+    justify-content: space-around;
+  }
+}
 .main-output--wrapper{
   display: flex;
   justify-content: space-around;

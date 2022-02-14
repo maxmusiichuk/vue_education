@@ -29,7 +29,6 @@ export default {
       axios
           .get("https://swapi.dev/api/people/1/")
           .then((response) => {
-            console.log(response);
             this.dataForOutput = response.data;
           })
     }
