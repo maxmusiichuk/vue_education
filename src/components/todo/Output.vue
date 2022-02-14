@@ -6,7 +6,7 @@
 
 <script>
 import {mapState} from "vuex";
-import LeftSide from "@/components/sides/LeftSide";
+import LeftSide from "@/components/todo/TaskOutput";
 
 export default {
   components: {LeftSide},

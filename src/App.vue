@@ -1,38 +1,23 @@
 <template>
   <div id="app">
-    <Input/>
-    <Output :api-data="dataForOutput"/>
+    <Todo/>
   </div>
 </template>
 
 <script>
-import Input from "./components/Input";
-import Output from "./components/Output";
-import axios from "axios";
+import Todo from "@/components/kernel/Todo";
 
 export default {
   name: 'App',
   data() {
     return {
-      dataForOutput: "",
     }
   },
   components: {
-    Input,
-    Output
+    Todo,
   },
-  created() {
-    // this.getApiData();
-  },
-  methods: {
-    getApiData() {
-      axios
-          .get("https://swapi.dev/api/people/1/")
-          .then((response) => {
-            this.dataForOutput = response.data;
-          })
-    }
-  }
+  created() {},
+  methods: {}
 }
 </script>
 
@@ -42,12 +27,5 @@ html{
   background:#ffc600;
 }
 #app {
-  background-color: #ffc600;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
