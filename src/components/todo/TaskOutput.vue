@@ -4,7 +4,7 @@
       <li class="task-list--item" v-for="(item,index) in tasksOutput" :key="item.id">
         <div class="inside-items">
         <span class="checkbox-item">
-          <input class="checkbox-switch" type="checkbox" :value="item.id" @click="setTaskStatus(item)">
+          <input class="checkbox-switch" type="checkbox" :checked="item.doneStatus == true" :value="item.id" @click="setTaskStatus(item)">
         </span>
           <p :class="['task-id',  {'done-task': item.doneStatus}]" style="text-align: left">
             {{ item.name }}</p>
@@ -131,7 +131,7 @@ export default {
   margin: 0;
 }
 .outside-items{
-  width: 27px;
+  min-width: 27px;
   margin-left: -27px;
   cursor: pointer;
 }
@@ -155,7 +155,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
+  min-width: 50px;
   height: 100%;
 }
 
