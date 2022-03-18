@@ -1,5 +1,5 @@
 const state = () => ({
-    tasks: []
+    tasks: [],
 })
 
 const getters = {

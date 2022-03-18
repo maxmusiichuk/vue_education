@@ -15,7 +15,8 @@ export default {
       inputValue: '',
       localValue: "",
       taskId: 0,
-      placeholderValue:"Enter task & press Enter"
+      placeholderValue:"Enter task & press Enter",
+      firstOutput:{}
     }
   },
   computed: {
@@ -25,6 +26,7 @@ export default {
   },
   created() {
     this.localValue = this.storeValue;
+    this.instructionList();
   },
   watch: {
     inputValue() {
@@ -32,6 +34,14 @@ export default {
     }
   },
   methods: {
+    instructionList(){
+      this.$store.commit("main/setTask", this.taskFormatter("Welcome to task manager"));
+      this.taskId++;
+      this.$store.commit("main/setTask", {id:this.taskId, name: "You can delete done tasks by pressing 'Clear done tasks'", doneStatus: true});
+      this.taskId++;
+      this.$store.commit("main/setTask", {id:this.taskId, name: "Also you can delete all tasks, just press 'Clear all'", doneStatus: false});
+      this.taskId++;
+    },
     taskFormatter(data) {
       return {id: this.taskId, name: data, doneStatus: false}
     },
